@@ -15,7 +15,8 @@ public class TestSoftAssertionsSearch {
         Configuration.pageLoadStrategy = "eager";
         open("https://github.com/selenide/selenide");
         $("#wiki-tab").click();
-        $(".markdown-body").$("ul").shouldHave(text("Soft assertions"));
+        $("#wiki-pages-box").$("input").setValue("SoftAssertions");
+        $("#wiki-pages-box").shouldHave(text("SoftAssertions")).shouldBe(visible);
         $(byText("Soft assertions")).click();
         $("#wiki-body").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
                 "class Tests {\n" +
@@ -28,6 +29,6 @@ public class TestSoftAssertionsSearch {
                 "    $(\"#second\").should(visible).click();\n" +
                 "  }\n" +
                 "}"));
-        // sleep(5000); //Чтобы браузер сразу не закрывался;
+        //sleep(5000); //Чтобы браузер сразу не закрывался;
     }
 }
